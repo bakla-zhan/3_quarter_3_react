@@ -1,2 +1,2 @@
-# 3_quarter_3_react
-react base course homeworks
+Домашние задания по курсу "ReactJS. Базовый курс"
+Начало 18.02.2021
