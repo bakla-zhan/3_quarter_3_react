@@ -1,0 +1,19 @@
+.chat-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: thistle;
+    width: 30%;
+    overflow-y: auto;
+}
+
+.new-chat {
+    padding: 10px;
+    position: relative;
+}
+
+.new-chat > *:last-child {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
