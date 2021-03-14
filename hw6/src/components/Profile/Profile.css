@@ -1,0 +1,8 @@
+.account {
+   text-align: center;
+}
+
+.change-name {
+   display: flex;
+   justify-content: center;
+}
