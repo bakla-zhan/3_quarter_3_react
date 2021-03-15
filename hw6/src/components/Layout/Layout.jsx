@@ -22,7 +22,7 @@ class _Layout extends Component {
                 {/* задать вопрос преподавателю, можно ли передать chatId централизованно один раз во все компоненты */}
                 <Header currentChat={match.params.chatId} />
                 <div className="layout-canvas">
-                    <ChatList />
+                    <ChatList currentChat={match.params.chatId} />
                     <MessageField currentChat={match.params.chatId} />
                </div>
             </div>

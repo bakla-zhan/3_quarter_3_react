@@ -1,8 +1,8 @@
 import { Component } from 'react';
-// import { push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import { List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { TextField, IconButton } from '@material-ui/core';
-import {Send, AddBox} from '@material-ui/icons';
+import {Drafts, Mail, AddBox} from '@material-ui/icons';
 import { NavLink } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
@@ -13,9 +13,10 @@ import './ChatList.css';
 
 class _ChatList extends Component {
     static propTypes = {
-        chats: PropTypes.array.isRequired,
+        currentChat: PropTypes.string, // чтобы узнать ID чата
+        chats: PropTypes.array.isRequired, // получаем массив с объектами чатов
         addChat: PropTypes.func.isRequired,
-        // push: PropTypes.func.isRequired,
+        push: PropTypes.func.isRequired,
     };
     
     state = {
@@ -27,6 +28,7 @@ class _ChatList extends Component {
         this.setState({
             chatName: '',
         });
+        this.props.push(`/chat/${this.props.chats.length + 1}`);
     };
 
     handleChange = (event) => {
@@ -42,9 +44,10 @@ class _ChatList extends Component {
         };
     }
 
-    // componentDidUpdate() {
-    //     this.props.push(`/chat/${this.props.chats.length}`);
-    // }
+    componentDidUpdate() {
+        // !this.state.chatName && this.props.push(`/chat/${this.props.chats.length}`);
+        this.props.currentChat && (this.props.chats[this.props.currentChat - 1].newMessages = false);
+    }
     
     render() {
         return (
@@ -70,9 +73,9 @@ class _ChatList extends Component {
                         >
                                 <ListItem button>
                                     <ListItemIcon>
-                                        <Send />
+                                        {chat.newMessages ? <Mail color='secondary' /> : <Drafts />}
                                     </ListItemIcon>
-                                    <ListItemText primary={chat} />
+                                    <ListItemText primary={chat.title} />
                                 </ListItem>
                         </NavLink>
                     ))}
@@ -101,7 +104,6 @@ const mapStateToProps = (state) => ({
     chats: state.chat.chats,
 });
 
-// сюда как-то нужно добавить push с помощью compose, но у меня не получается. что-то с синтаксисом не так
-const ChatList = connect(mapStateToProps, { addChat })(_ChatList);
+const ChatList = connect(mapStateToProps, { addChat, push })(_ChatList);
 
 export { ChatList };

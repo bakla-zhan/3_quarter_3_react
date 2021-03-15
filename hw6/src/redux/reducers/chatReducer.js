@@ -22,7 +22,7 @@ export const chatReducer = (state = initialState, action) => {
             
             return {
                 ...state,
-                chats: [...state.chats, chatName],
+                chats: [...state.chats, {title: chatName, newMessages: false}],
                 messages: {
                     ...state.messages,
                     [state.chats.length + 1]: [

@@ -15,7 +15,11 @@ const initialState = {
         userName: 'User1',
     },
     chat: {
-        chats: ['Chat 1', 'Chat 2', 'Chat 3'],
+        chats: [
+            {title: 'Chat 1', newMessages: false},
+            {title: 'Chat 2', newMessages: false},
+            {title: 'Chat 3', newMessages: false},
+        ],
         messages: {
             1: [{ author: 'robot', text: 'hello from chat 1' }],
             2: [{ author: 'robot', text: 'hello from chat 2' }],
