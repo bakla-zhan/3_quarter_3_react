@@ -1,0 +1,9 @@
+.layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-canvas {
+    display: flex;
+    height: 420px;
+}
